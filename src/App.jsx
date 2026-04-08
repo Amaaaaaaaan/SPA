@@ -1,22 +1,19 @@
-import { BrowserRouter,Routes,Route,Link } from "react-router-dom"
+import { useRef } from "react"
 
 function App() {
 
+  const inputRef = useRef();
+
+  const handlefocus = () => {
+    inputRef.current.focus();
+  }
+
   return <div>
-
-    
-
-    <BrowserRouter>
-    <Link to="/">Home</Link>
-    <Link to="/about">About</Link>
-      <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/about" element={<h1>About</h1>} />
-
-      </Routes>
-    </BrowserRouter>
+    <input ref={inputRef} type="text" />
+    <button onClick={handlefocus}>Focus</button>
   </div>
 
 }
+
 
 export default App
