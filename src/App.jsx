@@ -15,48 +15,46 @@
 
 // export default App
 
+// light bulb functionality
 
-// stop watch
-
-import React, { useRef } from "react";
+import { useState,useEffect } from "react";
 
 function App() {
-  const timeRef = useRef(null);
-  const intervalRef = useRef(null);
 
-  let count = 0;
-
-  const start = () => {
-    if (intervalRef.current) return;
-
-    intervalRef.current = setInterval(() => {
-      count++;
-      timeRef.current.innerText = count;
-    }, 1000);
-  };
-
-  const stop = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
-  };
-
-  const reset = () => {
-    stop();
-    count = 0;
-    timeRef.current.innerText = 0;
-  };
-
-  return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2 ref={timeRef}>0</h2>
-
-      <button onClick={start}>Start</button>
-      <button onClick={stop}>Stop</button>
-      <button onClick={reset}>Reset</button>
-    </div>
-  );
+return <div>
+  <LightBulb />
+</div>
 }
 
-export default App;
+function LightBulb() {
+  const [bulbOn, setBulbOn] = useState(true);  
+  return <div>
+    <BulbState bulbOn={bulbOn} />
+    <ToggleBulbState setBulbOn={setBulbOn} />
+  </div>
+}
+
+function BulbState({ bulbOn }) {
+  return <div>
+    {bulbOn ? <h1>Bulb is ON</h1> : <h1>Bulb is OFF</h1>}
+  </div>
+
+}
+
+function ToggleBulbState({ setBulbOn }) {
+  
+  function toggle(){
+    setBulbOn(currentState => !currentState);
+  }
+
+  return <div>
+    <button onClick={toggle}>Toggle the Bulb</button>
+  </div>
+}
+
+
+
+export default App
+
 
 
