@@ -127,27 +127,51 @@
 // export default App;
 
 
+//* working of useFetch custom hook *//
+
+// import { useState } from "react";
+// import { useFetch } from "./hooks/useFetch";
+// import js from "@eslint/js";
+
+// function App() {
+
+//   const [currentdata, setCurrentData] = useState(1);
+//   const { data, loading } = useFetch("https://jsonplaceholder.typicode.com/todos/" + currentdata);
+
+//   if(loading) {
+//     return <h1>Loading...</h1>
+//   }
+
+//   return (
+//     <div>
+//       <button onClick={()=> setCurrentData(1)}>1</button>
+//       <button onClick={()=> setCurrentData(2)}>2</button>
+//       <button onClick={()=> setCurrentData(3)}>3</button>
+//       {JSON.stringify(data)}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+//* working of useprev hook *//
+
+
 import { useState } from "react";
-import { useFetch } from "./hooks/useFetch";
-import js from "@eslint/js";
+import { usePrev } from "./hooks/usePrev";
 
 function App() {
 
-  const [currentdata, setCurrentData] = useState(1);
-  const { data, loading } = useFetch("https://jsonplaceholder.typicode.com/todos/" + currentdata);
+    const [count, setCount] = useState(0);
+    const prevCount = usePrev(count);
 
-  if(loading) {
-    return <h1>Loading...</h1>
-  }
-
-  return (
-    <div>
-      <button onClick={()=> setCurrentData(1)}>1</button>
-      <button onClick={()=> setCurrentData(2)}>2</button>
-      <button onClick={()=> setCurrentData(3)}>3</button>
-      {JSON.stringify(data)}
+    return <div>
+        <h1>Current Count: {count}</h1>
+        <h1>Previous Count: {prevCount}</h1>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
     </div>
-  );
+
 }
 
 export default App;

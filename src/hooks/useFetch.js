@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 export function useFetch(url) {
   const [data, setData] = useState(null);
@@ -16,6 +16,11 @@ export function useFetch(url) {
   useEffect(() => {
     getData();
   }, [url]);
+
+  useEffect(() => {
+    setInterval(getData, 10*1000);
+
+  }, []);
 
   return { data, loading };
 }
