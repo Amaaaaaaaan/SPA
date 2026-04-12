@@ -127,3 +127,27 @@
 // export default App;
 
 
+import { useState } from "react";
+import { useFetch } from "./hooks/useFetch";
+import js from "@eslint/js";
+
+function App() {
+
+  const [currentdata, setCurrentData] = useState(1);
+  const { data, loading } = useFetch("https://jsonplaceholder.typicode.com/todos/" + currentdata);
+
+  if(loading) {
+    return <h1>Loading...</h1>
+  }
+
+  return (
+    <div>
+      <button onClick={()=> setCurrentData(1)}>1</button>
+      <button onClick={()=> setCurrentData(2)}>2</button>
+      <button onClick={()=> setCurrentData(3)}>3</button>
+      {JSON.stringify(data)}
+    </div>
+  );
+}
+
+export default App;
