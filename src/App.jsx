@@ -91,3 +91,39 @@
 // }
 
 // export default App;
+
+//* working of custom hook *//
+
+// import { useState } from "react";
+
+// function useCounter() {
+//   const [count, setCount] = useState(0);
+//   function increment() {
+//     setCount(count + 1);
+//   }
+//   function decrement() {
+//     setCount(count - 1);
+//   }
+//   function reset(){
+//     setCount(0);
+//   }
+//   function increaseByValue(){
+//     setCount(count + 10);
+//   }
+//   return { count, increment, decrement, reset, increaseByValue };
+// }
+
+// function App() {
+//   const { count, increment, decrement, reset, increaseByValue } = useCounter();
+//   return <div>
+//     <h1>Count: {count}</h1>
+//     <button onClick={increment}>Increment</button>
+//     <button onClick={decrement}>Decrement</button>
+//     <button onClick={reset}>Reset</button>
+//     <button onClick={increaseByValue}>Increase by 10</button>
+//   </div>
+// }
+
+// export default App;
+
+
