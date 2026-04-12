@@ -158,20 +158,51 @@
 //* working of useprev hook *//
 
 
-import { useState } from "react";
-import { usePrev } from "./hooks/usePrev";
+// import { useState } from "react";
+// import { usePrev } from "./hooks/usePrev";
+
+// function App() {
+
+//     const [count, setCount] = useState(0);
+//     const prevCount = usePrev(count);
+
+//     return <div>
+//         <h1>Current Count: {count}</h1>
+//         <h1>Previous Count: {prevCount}</h1>
+//         <button onClick={() => setCount(count + 1)}>Increment</button>
+//     </div>
+
+// }
+
+// export default App;
+
+
+//* working of useDebounce hook *//
+
+import { useState, useEffect } from "react";
+import { useDebounce } from "./hooks/useDebounce";
 
 function App() {
+  const [input, setInput] = useState("");
 
-    const [count, setCount] = useState(0);
-    const prevCount = usePrev(count);
+  const debouncedInput = useDebounce(input, 500);
 
-    return <div>
-        <h1>Current Count: {count}</h1>
-        <h1>Previous Count: {prevCount}</h1>
-        <button onClick={() => setCount(count + 1)}>Increment</button>
+  useEffect(() => {
+    if (debouncedInput) {
+      console.log("API Call for:", debouncedInput);
+      // yaha API call karega
+    }
+  }, [debouncedInput]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => setInput(e.target.value)}
+      />
     </div>
-
+  );
 }
 
 export default App;
